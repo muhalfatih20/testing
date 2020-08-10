@@ -41,9 +41,9 @@ const data = {
 const jsonData = JSON.stringify(data); //pass the data with JSON format because javascript is not string, to send to mailchimp
 
 
-const url = "https://us17.api.mailchimp.com/3.0/lists/4f66884be2" ;
+const url = "https://us17.api.mailchimp.com/3.0/lists/4f66884be2" ; //4f66884be2
 const options = { method: "POST",
-                  auth: "zoeldjian09:c518a069827c78b4cee9ce806bb7d7a3-us17" };
+                  auth: "zoeldjian09:60c9c14f20e7a2cb2e73b68e4853a435-us17" }; ////60c9c14f20e7a2cb2e73b68e4853a435-us17
 
 
 const request = https.request(url, options, function(response){
