@@ -43,7 +43,7 @@ const jsonData = JSON.stringify(data); //pass the data with JSON format because 
 
 const url = "https://us17.api.mailchimp.com/3.0/lists/4f66884be2" ;
 const options = { method: "POST",
-                  auth: "zoeldjian09:z518a069827c78b4cee9ce806bb7d7a3-us17" };
+                  auth: "zoeldjian09:c518a069827c78b4cee9ce806bb7d7a3-us17" };
 
 
 const request = https.request(url, options, function(response){
@@ -61,7 +61,7 @@ const request = https.request(url, options, function(response){
    });
  });
 
-request.write(jsonData); //viewing the data after passed with JSON strngify from the Mailchimp.
+request.write(jsonData); //viewing the data after passed with JSON strngify from the Mailchimp...
 request.end();
 
 });
