@@ -5,19 +5,17 @@ const bodyParser = require ("body-parser");
 const request = require ("request");
 const https = require ("https");
 
-const app = express();
-//to get data from the post form
-app.use(bodyParser.urlencoded({extended:true}));
-//Static file to route to the local links (folder public)
-app.use(express.static("public"));
+const app = express(); //express server js
+
+app.use(bodyParser.urlencoded({extended:true})); //to get data from the post form
+
+app.use(express.static("public")); //Static file to route to the local links (folder public)
 
 app.get("/", function(req, res){
-
 res.sendFile(__dirname + "/signup.html");
-
 });
 
-app.post("/", function(req, res)
+app.post("/", function(req, res) //request post to mailchimp API
 
 {
 
@@ -32,7 +30,7 @@ const data = {
                 {
             email_address: email,
             status: "subscribed",
-            merged_field: {
+            merged_fields: {
               FNAME: firstName,
               LNAME: lastName
                   }
@@ -40,13 +38,13 @@ const data = {
               ]
             };
 
-//pass the data with JSON format to send to mailchimp
-const jsonData = JSON.stringify(data);
+const jsonData = JSON.stringify(data); //pass the data with JSON format because javascript is not string, to send to mailchimp
+
+
 const url = "https://us17.api.mailchimp.com/3.0/lists/4f66884be2" ;
-const options = {
-    method: "POST",
-    auth: "zoeldjian09:z518a069827c78b4cee9ce806bb7d7a3-us111"
-};
+const options = { method: "POST",
+                  auth: "zoeldjian09:z518a069827c78b4cee9ce806bb7d7a3-us17" };
+
 
 const request = https.request(url, options, function(response){
 
@@ -58,12 +56,12 @@ const request = https.request(url, options, function(response){
     res.sendFile(__dirname + "/failure.html");
   }
 
-   response.on("data", function(data){
+   response.on("data", function(data){  //response the data from JSON stringify on the line of 43
      console.log(JSON.parse(data));
    });
  });
 
-request.write(jsonData);
+request.write(jsonData); //viewing the data after passed with JSON strngify from the Mailchimp.
 request.end();
 
 });
@@ -82,5 +80,5 @@ app.listen(process.env.PORT || 3000, function(){
 
 });
 
-//List Id - 4f66884be2
+//List Id - 4f66884be2 TO SEND REQUEST TO THE MAILCHIMP SERVER
 //API key c518a069827c78b4cee9ce806bb7d7a3-us17
