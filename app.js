@@ -30,7 +30,7 @@ const data = {
                 {
             email_address: email,
             status: "subscribed",
-            merged_fields: {
+            merge_fields: {
               FNAME: firstName,
               LNAME: lastName
                   }
