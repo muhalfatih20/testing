@@ -5,6 +5,12 @@ const bodyParser = require ("body-parser");
 const request = require ("request");
 const https = require ("https");
 
+
+// Constants
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+
 const app = express(); //express server js
 
 app.use(bodyParser.urlencoded({extended:true})); //to get data from the post form
@@ -38,7 +44,7 @@ const data = {
               ]
             };
 
-const jsonData = JSON.stringify(data); //pass the data with JSON format because javascript is not string, to send to mailchimp
+const jsonData = JSON.stringify(data); //pass the data with JSON format because javascript is not a string, to send to the mailchimp
 
 
 const url = "https://us17.api.mailchimp.com/3.0/lists/4f66884be2" ; //4f66884be2
@@ -74,11 +80,11 @@ app.post("/failure", function(req, res){
 });
 
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(PORT, HOST);{
 
-  console.log("Server is running on port 3000.");
+  console.log("Server is running on http://${HOST}:${PORT}");
 
-});
+}
 
 //List Id - 4f66884be2 TO SEND REQUEST TO THE MAILCHIMP SERVER
 //API key c518a069827c78b4cee9ce806bb7d7a3-us17
